@@ -9,16 +9,79 @@
 
     {{content-for 'head'}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="styles/style.css">
+      <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/ember-bookmarks.css">
 
     {{content-for 'head-footer'}}
   </head>
   <body>
-    {{content-for 'body'}}
+    <section id="todoapp">
+      <header id="header">
+        <h1>todos</h1>
+          {{input
+            type="text"
+            id="new-todo"
+            placeholder="What needs to be done?"
+            value=newTitle
+            action="createTodo"}}
+        <input type="text" id="new-todo" placeholder="What needs to be done?" />
+      </header>
+
+      <section id="main">
+        <ul id="todo-list">
+          {{#each todo in model}}
+            <li {{bind-attr class="todo.isCompleted:completed"}}>
+              <input type="checkbox" class="toggle">
+              <label>{{todo.title}}</label><button class="destroy"></button>
+            </li>
+          {{/each}}
+        </ul>
+
+        <input type="checkbox" id="toggle-all">
+      </section>
+
+      <footer id="footer">
+        <span id="todo-count">
+          <strong>2</strong> todos left
+        </span>
+        <ul id="filters">
+          <li>
+            <a href="all" class="selected">All</a>
+          </li>
+          <li>
+            <a href="active">Active</a>
+          </li>
+          <li>
+            <a href="completed">Completed</a>
+          </li>
+        </ul>
+
+        <button id="clear-completed">
+          Clear completed (1)
+        </button>
+      </footer>
+    </section>
+
+    <script type="text/x-handlebars" data-template-name="todos">
+
+      <section id="todoapp">
+        {{! ... additional lines truncated for brevity ... }}
+      </section>
+
+      <footer id="info">
+        <p>Double-click to edit a todo</p>
+      </footer>
 
     <script src="assets/vendor.js"></script>
     <script src="assets/ember-bookmarks.js"></script>
+    <script src="bower_components/jquery-1.11.2.min.js"></script>
+    <script src="bower_components/handlebars-v1.3.0.js"></script>
+    <script src="bower_components/ember.js"></script>
+    <script src="bower_components/ember-data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="models/todo.js"></script>
 
     {{content-for 'body-footer'}}
   </body>

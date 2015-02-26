@@ -1,3 +1,9 @@
+window.Todos = Ember.Application.create();
+
+
+  Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+
+
 import Ember from 'ember';
 import Resolver from 'ember/resolver';
 import loadInitializers from 'ember/load-initializers';
